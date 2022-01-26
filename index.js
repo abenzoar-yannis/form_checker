@@ -70,7 +70,10 @@ const emailChecker = (value) => {
 };
 
 // Fonction de régle à check pour l'input PASSWORD
+// !!! Penser à ajouté une condition pour les classelist si on réduit le nombre de caractère. !!!
 const passwordChecker = (value) => {
+  progressBar.classList = "";
+
   if (
     !value.match(
       /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
@@ -83,11 +86,11 @@ const passwordChecker = (value) => {
     progressBar.classList.add("progressRed");
     password = null;
   } else if (value.length < 12) {
-    errorDisplay("password", ", true");
+    errorDisplay("password", "", "true");
     progressBar.classList.add("progressBlue");
     password = value;
   } else {
-    errorDisplay("password", ", true");
+    errorDisplay("password", "", "true");
     progressBar.classList.add("progressGreen");
     password = value;
   }
@@ -95,7 +98,13 @@ const passwordChecker = (value) => {
 
 // Fonction de régle à check pour l'input COMFIRMPASSWORD
 const confirmChecker = (value) => {
-  console.log(value);
+  if (value !== password) {
+    errorDisplay("confirm", "Les mots de passes ne corespondent pas!");
+    confirmPass = false;
+  } else {
+    errorDisplay("confirm", "", true);
+    confirmPass = true;
+  }
 };
 
 // Logique qui lance le check des infos entré dans nos input
