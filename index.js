@@ -80,6 +80,16 @@ const passwordChecker = (value) => {
       "password",
       "Un minimum de 8 caractère, une majuscule, un chiffre et un caractère spécial"
     );
+    progressBar.classList.add("progressRed");
+    password = null;
+  } else if (value.length < 12) {
+    errorDisplay("password", ", true");
+    progressBar.classList.add("progressBlue");
+    password = value;
+  } else {
+    errorDisplay("password", ", true");
+    progressBar.classList.add("progressGreen");
+    password = value;
   }
 };
 
