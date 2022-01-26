@@ -2,25 +2,53 @@ const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
 
-// Fonction de régle à check pour l'input PSEUDO
-const pseudoChecker = (value) => {
-  const pseudoContainer = document.querySelector(".pseudo-container");
-  const errorDisplay = document.querySelector(".pseudo-container > span");
+// fonction qui renvoie un message d'erreur
+const errorDisplay = (tag, message, valid) => {
+  const container = document.querySelector("." + tag + "-container");
+  const span = document.querySelector("." + tag + "-container > span");
 
-  if (value.length > 0 && (value.length < 3 || value.length > 20)) {
-    pseudoContainer.classList.add("error");
-    errorDisplay.textContent = "Le pseudo doit faire entre 3 et 20 caractères";
-  } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
-    pseudoContainer.classList.add("error");
-    errorDisplay.textContent =
-      "Le pseudo ne doit pas contenir de caractères spéciaux.";
+  if (!valid) {
+    container.classList.add("error");
+    span.textContent = message;
   } else {
-    pseudoContainer.classList.remove("error");
-    errorDisplay.textContent = "";
+    container.classList.remove("error");
+    span.textContent = message;
   }
 };
 
-// Fonction de régle à check pour l'input PSEUDO
+// 03. Nouvelle Fonction qui test les régle pour l'input PSEUDO
+const pseudoChecker = (value) => {
+  if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+    errorDisplay("pseudo", "Le pseudo doit faire entre 3 et 20 caractères");
+  } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+    errorDisplay(
+      "pseudo",
+      "Le pseudo ne doit pas contenir de caractères spéciaux."
+    );
+  } else {
+    errorDisplay("pseudo", "", true);
+  }
+};
+
+// 0.2 Fonction de régle à check pour l'input PSEUDO
+// const pseudoChecker = (value) => {
+//   const pseudoContainer = document.querySelector(".pseudo-container");
+//   const errorDisplay = document.querySelector(".pseudo-container > span");
+
+//   if (value.length > 0 && (value.length < 3 || value.length > 20)) {
+//     pseudoContainer.classList.add("error");
+//     errorDisplay.textContent = "Le pseudo doit faire entre 3 et 20 caractères";
+//   } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
+//     pseudoContainer.classList.add("error");
+//     errorDisplay.textContent =
+//       "Le pseudo ne doit pas contenir de caractères spéciaux.";
+//   } else {
+//     pseudoContainer.classList.remove("error");
+//     errorDisplay.textContent = "";
+//   }
+// };
+
+// 01. Fonction de régle à check pour l'input PSEUDO
 // const pseudoChecker = (value) => {
 //   console.log(value);
 // };
