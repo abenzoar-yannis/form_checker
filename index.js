@@ -1,6 +1,7 @@
 const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
+const progressBar = document.getElementById("progress-bar");
 let pseudo, email, password, confirmPass;
 
 // fonction qui renvoie un message d'erreur
@@ -70,7 +71,16 @@ const emailChecker = (value) => {
 
 // Fonction de régle à check pour l'input PASSWORD
 const passwordChecker = (value) => {
-  console.log(value);
+  if (
+    !value.match(
+      /^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\d]){1,})(?=(.*[\W]){1,})(?!.*\s).{8,}$/
+    )
+  ) {
+    errorDisplay(
+      "password",
+      "Un minimum de 8 caractère, une majuscule, un chiffre et un caractère spécial"
+    );
+  }
 };
 
 // Fonction de régle à check pour l'input COMFIRMPASSWORD
@@ -89,7 +99,7 @@ inputs.forEach((input) => {
         emailChecker(e.target.value);
         break;
       case "password":
-        pseudoChecker(e.target.value);
+        passwordChecker(e.target.value);
         break;
       case "confirm":
         confirmChecker(e.target.value);
