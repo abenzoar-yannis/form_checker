@@ -1,6 +1,7 @@
 const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
+let pseudo, email, password, confirmPass;
 
 // fonction qui renvoie un message d'erreur
 const errorDisplay = (tag, message, valid) => {
@@ -20,13 +21,16 @@ const errorDisplay = (tag, message, valid) => {
 const pseudoChecker = (value) => {
   if (value.length > 0 && (value.length < 3 || value.length > 20)) {
     errorDisplay("pseudo", "Le pseudo doit faire entre 3 et 20 caractères");
+    pseudo = null;
   } else if (!value.match(/^[a-zA-Z0-9_.-]*$/)) {
     errorDisplay(
       "pseudo",
       "Le pseudo ne doit pas contenir de caractères spéciaux."
     );
+    pseudo = null;
   } else {
     errorDisplay("pseudo", "", true);
+    pseudo = value;
   }
 };
 
