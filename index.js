@@ -59,7 +59,13 @@ const pseudoChecker = (value) => {
 
 // Fonction de régle à check pour l'input EMAIL
 const emailChecker = (value) => {
-  console.log(value);
+  if (!value.match(/^[\w._-]+@[\w-]+\.[a-z]{2,4}$/i)) {
+    errorDisplay("email", "Le mail n'est pas valide");
+    email = null;
+  } else {
+    errorDisplay("email", "", true);
+    email = value;
+  }
 };
 
 // Fonction de régle à check pour l'input PASSWORD
