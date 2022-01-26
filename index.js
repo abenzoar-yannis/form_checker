@@ -94,6 +94,7 @@ const passwordChecker = (value) => {
     progressBar.classList.add("progressGreen");
     password = value;
   }
+  if (confirmPass) confirmChecker(confirmPass);
 };
 
 // Fonction de régle à check pour l'input COMFIRMPASSWORD
