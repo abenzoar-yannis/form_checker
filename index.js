@@ -1,3 +1,4 @@
+const form = document.querySelector("form");
 const inputs = document.querySelectorAll(
   'input[type="text"], input[type="password"]'
 );
@@ -128,4 +129,29 @@ inputs.forEach((input) => {
         null;
     }
   });
+});
+
+// Fonction d'envoi et de réinitialisation du formulaire
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  if (pseudo && email && password && confirmPass) {
+    const data = {
+      pseudo,
+      email,
+      password,
+    };
+    console.log(data);
+
+    inputs.forEach((input) => (input.value = ""));
+    progressBar.classList = ""; // ou remove
+
+    pseudo = null;
+    email = null;
+    password = null;
+    confirmPass = null;
+    alert("Inscription validé !");
+  } else {
+    alert("veuillez remplir correctement les champs");
+  }
 });
